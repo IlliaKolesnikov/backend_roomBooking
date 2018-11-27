@@ -80,30 +80,5 @@ router.post('/signin', (req, res) => {
       })
 
   })
-  router.post('/verify', (req,res) =>{
-    User.findOneAndUpdate({name: req.body.username}, {activationKey: "", isActivated: true}, {new: true}, (err, user)=>{
-      if(err){
-       return res.status(400).json({error: err.message})
-      }
-      const payload = {
-        _id: user._id,
-        mail: user.name,
-        iss: 'http://localhost:8080',
-        permissions: 'poll',
-      }
-      const options = {
-        expiresIn: '7d',
-        jwtid: v4(),
-      }
-      const secret = new Buffer("test", 'base64')
-      jwt.sign(payload, secret, options, (err, token) => {
-        if(err){
-          return res.status(400).json({error: err.message})
-        }
-        return res.json({ data: token, mail: user.name })
-      })
-
-    })
-  })
 
 module.exports = router
