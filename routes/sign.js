@@ -36,6 +36,8 @@ router.post('/signup', [check('username').isEmail()], (req, res) => {
         user.save((err) => {
           if (err) {
             return res.status(400).json({ error: err.message })
+          } else {
+            return res.json('REGISTERED')
           }
         })
       })
