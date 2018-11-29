@@ -6,8 +6,6 @@ let bcrypt_cost = 12
 const userSchema = new Schema({
   name: { type: String, required: true },
   passwordHash: String,
-  isActivated: Boolean,
-  activationKey: String,
 })
 
 userSchema.statics.hashPassword = (passwordRaw, cb) => {

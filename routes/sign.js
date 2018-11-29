@@ -2,7 +2,6 @@ const express = require("express");
 const User = require("../models/user")
 const jwt = require('jsonwebtoken')
 const v4 = require('node-uuid')
-const keygen = require("keygenerator");
 const { check, validationResult } = require('express-validator/check');
 const router = express.Router();
 
